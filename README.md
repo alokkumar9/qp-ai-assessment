@@ -85,7 +85,7 @@ Stop a specific model:
 ollama stop <model_name>
 ```
 ---
-**This project implements a FastAPI-based system for uploading documents, generating embeddings, and querying the uploaded content using a powerful language model.**
+**This project implements a FastAPI-based system for uploading documents, generating embeddings, and querying the uploaded content.**
 
 ## Installation
 To set up the project, follow these steps:
