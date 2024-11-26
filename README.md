@@ -2,6 +2,8 @@
 
 This project implements a simple contextual chat bot capable of reading and processing long PDF/Word documents using the Llama 3.2 3B model via Ollama.
 
+[**MLOps PipeLine Link**](https://drive.google.com/file/d/1a0ja1J-z4G-qmMd2qXrG0NWKFg5D4jLl/view?usp=drive_link "MLOps Pipeline Draw")
+
 **Ollama to run LLama3.2 3B Model Locally**
 
 ## Embedding Model
