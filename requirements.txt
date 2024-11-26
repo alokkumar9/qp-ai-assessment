@@ -1,0 +1,12 @@
+fastapi[standard]
+langchain
+langchain-community
+ollama
+langchain_chroma
+pymupdf
+python-docx
+rank_bm25
+unstructured['pdf']
+unstructured 
+langchain-huggingface
+uvicorn

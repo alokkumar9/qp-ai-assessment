@@ -1,0 +1,7 @@
+# Exclude folders
+chroma_db/
+chat/
+__pycache__/
+
+# Exclude specific file
+all_collections.txt
