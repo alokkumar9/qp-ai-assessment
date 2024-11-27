@@ -142,3 +142,78 @@ If port 8000 is engaged:
 sudo lsof -t -i tcp:8000 | xargs kill -9
 ```
 
+# RAG Performance Evaluation using Giskard
+
+This instructions on how to perform performance evaluation of a Retrieval-Augmented Generation (RAG) system using Giskard, specifically focusing on the RAGET (RAG Evaluation Toolkit) feature.
+
+## Overview
+
+Giskard is an open-source Python library that offers tools for testing, monitoring, and evaluating machine learning and AI models, including RAG systems. RAGET, a component of Giskard, allows for comprehensive evaluation of RAG systems by automatically generating test sets and assessing various components of the RAG pipeline.
+
+## Prerequisites
+
+1. Install Giskard:
+   ```bash
+   pip install giskard
+   ```
+
+2. Ensure you have your RAG system implemented and ready for evaluation.
+
+## Steps for RAG Evaluation
+
+### 1. Generate Test Set
+
+RAGET can automatically generate a test set from your RAG system's knowledge base. This test set includes:
+
+- `question`: The generated question
+- `reference_context`: The context that can be used to answer the question
+- `reference_answer`: The answer to the question (generated with LLM)
+
+### 2. Prepare Your RAG Agent
+
+Wrap your RAG agent in a function that takes a question as input and returns an answer:
+
+```python
+def get_answer_fn(question: str, history=None) -> str:
+    # Your RAG agent implementation here
+    return answer
+```
+
+### 3. Run the Evaluation
+
+Use the `giskard.rag.evaluate` function to evaluate your RAG agent:
+
+```python
+from giskard.rag import evaluate
+
+report = evaluate(get_answer_fn, testset=testset, knowledge_base=knowledge_base)
+```
+
+### 4. Analyze the Results
+
+RAGET computes scores for each component of the RAG agent:
+
+- **Generator**: The LLM used inside the RAG to generate answers
+- **Retriever**: Fetches relevant documents from the knowledge base
+- **Rewriter**: Rewrites user queries for relevance or to account for chat history
+- **Router**: Filters user queries based on intentions
+- **Knowledge Base**: The set of documents given to the RAG
+
+Each component is scored on a scale from 0 to 100, with 100 being a perfect score.
+
+### 5. One can Include Additional Metrics (Optional)
+
+We can include additional RAGAS metrics in your evaluation:
+
+```python
+from giskard.rag.metrics.ragas_metrics import ragas_context_recall, ragas_faithfulness
+
+report = evaluate(
+    get_answer_fn,
+    testset=testset,
+    knowledge_base=knowledge_base,
+    metrics=[ragas_context_recall, ragas_faithfulness]
+)
+```
+
+
